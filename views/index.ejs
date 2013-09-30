@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project Survival</title> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="images/favicon.ico?v=2" />
+        <link href="stylesheets/bootstrap.css" rel="stylesheet">
+        <link href="stylesheets/jquery-ui.css" rel="stylesheet">
+        <link href="stylesheets/main.css" rel="stylesheet">
+
+        <script src="javascripts/jquery-1.10.2.js"></script>
+        <script src="javascripts/jquery-ui.js"></script>
+        <script src="javascripts/angular.js"></script>
+        <script src="javascripts/bootstrap.js"></script>
+        <script src="javascripts/bootbox.js"></script>
+
+        <script src="javascripts/angular.compilehtml.js"></script>
+
+        <script src="javascripts/game/notifications.js"></script>
+        <script src="javascripts/game/button.js"></script>
+        <script src="javascripts/game/events.js"></script>
+        <script src="javascripts/game/game.js"></script>
+
+        <script src="javascripts/game/main.js"></script>
+
+        <script src="javascripts/game/controllers/gamectrl.js"></script> 
+        <script src="javascripts/game/controllers/signupctrl.js"></script> 
+        <script src="javascripts/game/services/templateservice.js"></script>
+        <script src="javascripts/game/services/currencyflow.js"></script>
+        <script src="javascripts/game/directives/gameview.js"></script>
+        <script src="javascripts/game/directives/visitor.js"></script>
+        <script src="javascripts/game/directives/dropzone.js"></script>
+        <script src="javascripts/game/directives/nav.js"></script>
+
+        <style>
+            body {
+                padding-top: 60px;     
+            }
+        </style>
+
+    </head>
+    <body ng-app="Main"> 
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Project Survival</a>
+                </div>
+
+                <div id="navbar-main" class="navbar-collapse collapse">
+                   <ul class="nav navbar-nav">
+                        <li class="active"><a href="#game" mainnav>Game</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ng-view></ng-view>
+        </div>
+        <div style="height:100px"></div>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-3"> 
+        <div class="well">
+            <ul class="list-unstyled">
+                <li><a href="#/">Create Character</a></li> 
+                <li><a href="#/game">Game</a></li> 
+            </ul>
+        </div>
+    </div>
+
+    <div class="well col-md-9">
+        <form class="form-horizontal" name="characterForm">
+            <fieldset>
+                <legend>Create Character</legend>  
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Name:</label>
+                    <div class="col-lg-10">
+                        <input type="text" id="inputDefault" class="form-control" ng-model="name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Gender:</label>
+                    <div class="col-lg-10">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="gender" value="male" ng-model="gender" /> Male
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="gender" value="female" ng-model="gender" /> Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <!--<button class="btn btn-default">Cancel</button>-->
+                        <button class="btn btn-primary" type="submit" ng-click="submit_character()">Create</button> 
+                    </div>
+                </div>
+            </fieldset> 
+        </form>
+    </div>
+</div>
