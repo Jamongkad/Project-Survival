@@ -36,33 +36,3 @@ function Button(options) {
         }
     }
 }
-
-
-/*
-var Button = {
-    Button: function(options) {
-        this.options = options;       
-        Button.activate();
-    },
-
-    activate: function() { 
-        console.log(Button.options);
- 
-        var cd = 10;
-        var width = $(this.elem).width();
-        var current_width = width + "px";
-        var target_width = '0%';
-         
-        if(!this.elem.hasClass("disabled")) { 
-            this.elem.stop(true, true).addClass("disabled").text("collecting").animate({width: target_width, padding: '4px 0px'}, cd * 1000, 'linear', function() { 
-                $(this).text("done!").animate({padding: '4px 12px', width: current_width}, 1000, 'linear', function() {
-                    $(this).text("collect").attr("class", "btn btn-primary collect").removeAttr("style").removeClass("disabled");
-                });
-            });
-            console.log("clicked!");
-        } else {
-            console.log("no click!"); 
-        }
-    }
-}
-*/

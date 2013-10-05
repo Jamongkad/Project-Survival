@@ -10,10 +10,11 @@ app.config(function($routeProvider) {
             controller: "GameCtrl"
           , templateUrl: "/game/main"
         })
-        .when('/enter_phase', {  
+        .when('/supply_phase', { 
             controller: "GameCtrl"
-          , templateUrl: "/game/enter_phase"
+          , templateUrl: "/game/supply_phase"
         })
+        /*
         .when('/phase/farm', { 
             controller: "GameCtrl"
           , templateUrl: "/game/phase/farm_phase"
@@ -26,4 +27,5 @@ app.config(function($routeProvider) {
             controller: "GameCtrl"
           , templateUrl: "/game/phase/hunt_phase"
         })
+        */
 });

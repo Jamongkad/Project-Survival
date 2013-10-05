@@ -9,8 +9,8 @@ exports.signup = function(req, res) {
     res.render("partials/signup");
 }
 
-exports.enter_phase = function(req, res) {
-    res.render("partials/enter_phase");
+exports.supply_phase = function(req, res) {
+    res.render("partials/supply_phase");
 }
 
 exports.phase = function(req, res) {
@@ -52,17 +52,15 @@ exports.pull_players_by_job = function(req, res) {
 
 exports.create = function(req, res) {
     var char_data = {name: req.body.name, gender: req.body.gender};
-    var job = req.body.job.jobName;
-
     client.query("INSERT INTO characters SET ?", char_data, function(err, result) {
-        client.query("INSERT INTO job SET ?", {"characterId": result.insertId, "jobName": job}, function(err, result) {});
+        //client.query("INSERT INTO job SET ?", {"characterId": result.insertId, "jobName": job}, function(err, result) {});
         res.json(result);
     });
 
 }
 
 exports.display_characters = function(req, res) { 
-    var sql = "SELECT * FROM characters INNER JOIN job ON characters.id = job.characterId ORDER BY id DESC";
+    var sql = "SELECT * FROM characters ORDER BY id DESC";
     client.query(sql, function(err, result) {
         res.json(result);
     })
