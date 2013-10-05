@@ -56,8 +56,19 @@
         </div>
 
         <div class="container">
-            <ng-view></ng-view>
+            <div class="row">
+                <div class="col-md-3"> 
+                    <div class="well">
+                        <ul class="list-unstyled">
+                            <li><a href="#/">Create Character</a></li> 
+                            <li><a href="#/game">Game</a></li> 
+                        </ul>
+                    </div>
+                </div>
+                <ng-view></ng-view>
+            </div>
+
         </div>
-        <div style="height:100px"></div>
+
     </body>
 </html>

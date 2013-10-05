@@ -33,7 +33,17 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/game/signup', game.signup);
+app.get('/game/main', game.main);
+app.get('/game/display_characters', game.display_characters);
+app.get('/game/pull_jobs', game.pull_jobs);
+app.get('/game/enter_phase', game.enter_phase);
+app.get('/game/phase/:phase', game.phase);
+app.get('/game/pull_players_by_job', game.pull_players_by_job);
+
+
+
 app.post('/game/create', game.create);
+app.post('/game/update_job', game.update_job);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));

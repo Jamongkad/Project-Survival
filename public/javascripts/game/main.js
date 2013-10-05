@@ -7,7 +7,23 @@ app.config(function($routeProvider) {
           , templateUrl: "/game/signup"
         })
         .when('/game', { 
-            controller: "SignupCtrl"
-          , templateUrl: "/game/signup"
+            controller: "GameCtrl"
+          , templateUrl: "/game/main"
+        })
+        .when('/enter_phase', {  
+            controller: "GameCtrl"
+          , templateUrl: "/game/enter_phase"
+        })
+        .when('/phase/farm', { 
+            controller: "GameCtrl"
+          , templateUrl: "/game/phase/farm_phase"
+        })
+        .when('/phase/mine', { 
+            controller: "GameCtrl"
+          , templateUrl: "/game/phase/mine_phase"
+        })
+        .when('/phase/hunt', { 
+            controller: "GameCtrl"
+          , templateUrl: "/game/phase/hunt_phase"
         })
 });

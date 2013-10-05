@@ -1,0 +1,20 @@
+<div class="well col-md-9" ng-hide="characters">You must create characters in order to proceed!</div>
+<div class="well col-md-9" ng-show="characters">
+    <legend>Game Characters</legend>
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <th>name</th>     
+                <th>gender</th>     
+                <th>job</th>     
+            </thead>
+
+            <tr ng-repeat="char in characters">
+                <td>{{char.name}}</td>
+                <td>{{char.gender}}</td>
+                <td>{{char.jobName}}</td>
+            </tr>
+        </table>
+    </div>   
+    <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="proceed('/enter_phase')">Proceed</button>
+</div>

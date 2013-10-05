@@ -1,8 +1,77 @@
+var mysql = require('mysql');
+var client = mysql.createConnection({host: 'localhost', user: 'root', password: 'brx4*svv', database: 'survivor'});
 
-exports.signup = function(req, res){
+exports.main = function(req, res) {
+    res.render("partials/main");
+}
+
+exports.signup = function(req, res) {
     res.render("partials/signup");
-};
+}
+
+exports.enter_phase = function(req, res) {
+    res.render("partials/enter_phase");
+}
+
+exports.phase = function(req, res) {
+    var phase_choice = req.params.phase;  
+    res.render("partials/" + phase_choice);
+}
+
+exports.pull_jobs = function(req, res) {    
+    var jobs = [
+        {jobName: "hunter"} 
+      , {jobName: "farmer"}
+      , {jobName: "miner"}
+    ];
+    res.json(jobs);
+}
+
+//move these guys into a model soon.
+exports.pull_players_by_job = function(req, res) {
+    var job_choice = req.query.choice;
+
+    if(job_choice == 'farm') {
+        sql_choice = 'farmer';
+    }
+
+    if(job_choice == 'mine') {
+        sql_choice = 'miner';
+    }
+
+    if(job_choice == 'hunt') {
+        sql_choice = 'hunter';
+    }
+
+    var sql = "SELECT * FROM characters INNER JOIN job ON characters.id = job.characterId WHERE 1=1 AND ?";
+    client.query(sql, {"job.jobName": sql_choice}, function(err, result) {
+        res.json(result);
+    });
+
+}
 
 exports.create = function(req, res) {
-    res.json(req.body);
+    var char_data = {name: req.body.name, gender: req.body.gender};
+    var job = req.body.job.jobName;
+
+    client.query("INSERT INTO characters SET ?", char_data, function(err, result) {
+        client.query("INSERT INTO job SET ?", {"characterId": result.insertId, "jobName": job}, function(err, result) {});
+        res.json(result);
+    });
+
+}
+
+exports.display_characters = function(req, res) { 
+    var sql = "SELECT * FROM characters INNER JOIN job ON characters.id = job.characterId ORDER BY id DESC";
+    client.query(sql, function(err, result) {
+        res.json(result);
+    })
+}
+
+exports.update_job = function(req, res) {
+    var post = req.body;
+    var sql = "UPDATE job SET jobName = " + client.escape(post.jobName) + " WHERE characterId = " + client.escape(post.characterId);
+    client.query(sql, function(err, result) {
+        res.json(result);
+    });
 }
