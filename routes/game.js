@@ -22,9 +22,11 @@ exports.view = function(req, res) {
 
 exports.pull_jobs = function(req, res) {    
     var jobs = [
-        {jobName: "hunter"} 
-      , {jobName: "farmer"}
-      , {jobName: "miner"}
+        {jobName: "Hunt"} 
+      , {jobName: "Research"}
+      , {jobName: "Explore"}
+      , {jobName: "Craft"}
+      , {jobName: "Guard"}
     ];
     res.json(jobs);
 }

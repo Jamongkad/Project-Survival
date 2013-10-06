@@ -1,17 +1,5 @@
 function GameCtrl($scope, $location, $routeParams) {
-
-    var pull_job = function() {
-        $.ajax({
-            type: 'GET'    
-          , dataType: 'json' 
-          , url: '/game/pull_jobs'
-          , success: function(data) {    
-                $scope.job = data;
-                $scope.$apply($scope.job);
-            }
-        }); 
-    }
-    
+ 
     $.ajax({
         type: 'GET'    
       , dataType: 'json' 

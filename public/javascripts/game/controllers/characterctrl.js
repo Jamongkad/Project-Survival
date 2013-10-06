@@ -1,7 +1,5 @@
 function CharacterCtrl($scope, $routeParams) {
 
-    $scope.character = '';
-
     $.ajax({
         type: 'GET'    
       , dataType: 'json' 
@@ -11,4 +9,26 @@ function CharacterCtrl($scope, $routeParams) {
             $scope.$apply($scope.character);
         }
     });
+
+
+    $.ajax({
+        type: 'GET'    
+      , dataType: 'json' 
+      , url: '/game/pull_jobs'
+      , success: function(data) {    
+            $scope.jobs = data;
+            $scope.$apply($scope.job);
+        }
+    }); 
+
+    $scope.set_task = function() {
+        console.log($scope.player_task);
+
+        $scope.task = [
+            {"name": "ploo"}
+          , {"name": "plah"}
+          , {"name": "plee"}
+        ];
+    }
+
 }
