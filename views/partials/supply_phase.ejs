@@ -1,12 +1,15 @@
-<div class="well col-md-9">
-    <h3>Supply Phase</h3>
-
-    <div class="table-responsive">
-        <table class="table table-condensed">
-            <tr ng-repeat="char in characters">
-                <td><a href="/#/view/{{char.id}}">{{char.name}}</a></td>
-                <td>{{char.gender}}</td>
-            </tr>
-        </table>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">Supply Phase</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <tr ng-repeat="char in characters">
+                        <td>{{char.name}}</td>
+                        <td><a href="/#/view/{{char.id}}">view profile</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
