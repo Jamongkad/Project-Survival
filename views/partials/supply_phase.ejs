@@ -1,8 +1,12 @@
 <div class="well col-md-9">
-    <legend>Supply Phase</legend>
-    <!--
-    <button class="btn btn-default btn-lg btn-block" type="button"  ng-click="proceed('/phase/farm')">Farm</button>
-    <button class="btn btn-default btn-lg btn-block" type="button"  ng-click="proceed('/phase/mine')">Mine</button>
-    <button class="btn btn-default btn-lg btn-block" type="button"  ng-click="proceed('/phase/hunt')">Hunt</button>
-    -->
+    <h3>Supply Phase</h3>
+
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <tr ng-repeat="char in characters">
+                <td><a href="/#/view/{{char.id}}">{{char.name}}</a></td>
+                <td>{{char.gender}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

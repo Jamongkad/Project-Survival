@@ -1,4 +1,4 @@
-function GameCtrl($scope, $location) {
+function GameCtrl($scope, $location, $routeParams) {
 
     var pull_job = function() {
         $.ajax({
@@ -39,5 +39,4 @@ function GameCtrl($scope, $location) {
     $scope.proceed = function(path) {
         $location.path(path);
     }
-
 }

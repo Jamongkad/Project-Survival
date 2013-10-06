@@ -37,8 +37,9 @@ app.get('/game/main', game.main);
 app.get('/game/display_characters', game.display_characters);
 app.get('/game/pull_jobs', game.pull_jobs);
 app.get('/game/supply_phase', game.supply_phase);
+app.get('/game/character_profile', game.character_profile);
+app.get('/game/view/:id', game.view);
 
-app.get('/game/phase/:phase', game.phase);
 app.get('/game/pull_players_by_job', game.pull_players_by_job);
 
 app.post('/game/create', game.create);

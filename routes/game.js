@@ -13,9 +13,11 @@ exports.supply_phase = function(req, res) {
     res.render("partials/supply_phase");
 }
 
-exports.phase = function(req, res) {
-    var phase_choice = req.params.phase;  
-    res.render("partials/" + phase_choice);
+exports.view = function(req, res) {
+    var sql = "SELECT * FROM characters WHERE ?";
+    client.query(sql, {"id": req.params.id}, function(err, result) {
+        res.json(result);
+    })
 }
 
 exports.pull_jobs = function(req, res) {    
@@ -25,6 +27,10 @@ exports.pull_jobs = function(req, res) {
       , {jobName: "miner"}
     ];
     res.json(jobs);
+}
+
+exports.character_profile = function(req, res) {
+    res.render("partials/character_profile");
 }
 
 //move these guys into a model soon.
