@@ -14,8 +14,8 @@ exports.supply_phase = function(req, res) {
 }
 
 exports.view = function(req, res) {
-    var sql = "SELECT * FROM characters WHERE ?";
-    client.query(sql, {"id": req.params.id}, function(err, result) {
+    var sql = "SELECT * FROM characters LEFT JOIN tasks ON tasks.characterId = characters.id WHERE ?";
+    client.query(sql, {"characters.id": req.params.id}, function(err, result) {
         res.json(result);
     })
 }
@@ -65,6 +65,13 @@ exports.create = function(req, res) {
         res.json(result);
     });
 
+}
+
+exports.assign_task = function(req, res) {
+    var sql = "REPLACE INTO tasks SET ?";
+    client.query(sql, req.body, function(err, result) {
+        res.json(result);       
+    });
 }
 
 exports.display_characters = function(req, res) { 

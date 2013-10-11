@@ -1,16 +1,16 @@
 function CharacterCtrl($scope, $routeParams) {
 
     $scope.task_desc = "A hunter risk his/her life for the continued survival for the populace.";
+
     $.ajax({
         type: 'GET'    
       , dataType: 'json' 
       , url: '/game/view/' + $routeParams.id
+      , async: false
       , success: function(data) {    
             $scope.character = data[0];
-            $scope.$apply($scope.character);
         }
     });
-
 
     $.ajax({
         type: 'GET'    
@@ -22,14 +22,16 @@ function CharacterCtrl($scope, $routeParams) {
         }
     }); 
 
-    $scope.set_task = function() {
+    $scope.player_task = $scope.character.parentTask;
+
+    var player_task = function() { 
         $scope.task_specific = "";
         $scope.task_desc = "";
         if($scope.player_task == "Research") { 
             $scope.task = [
-                {"task": "weapon/armor advancement", "value": "weapon_up"}
-              , {"task": "agricultural advancement", "value": "agri_up"}
-              , {"task": "village advancement", "value": "vill_up"}
+                {"task": "weapon/armor advancement", "value": "weapon_up", "selected": ($scope.character.childTask == "weapon_up") ? "selected" : null}
+              , {"task": "agricultural advancement", "value": "agri_up", "selected": ($scope.character.childTask == "agri_up") ? "selected" : null}
+              , {"task": "village advancement", "value": "vill_up", "selected": ($scope.character.childTask == "vill_up") ? "selected" : null}
             ];
         } else if($scope.player_task == "Craft") { 
             $scope.task = [
@@ -54,8 +56,37 @@ function CharacterCtrl($scope, $routeParams) {
         } 
     }
 
-    $scope.set_task_specific = function() {
-        console.log($scope.task_specific);
+    player_task();
+
+    $scope.set_task = function() {
+        player_task();
+    }
+
+    $scope.save_character = function() {
+        if($scope.player_task == "Research" || $scope.player_task == "Craft" || $scope.player_task == "Explore") { 
+            if($scope.task_specific == "") {
+                alert("Please pick a specific task!");
+            } else {
+                $.ajax({
+                   type: 'POST'    
+                 , dataType: 'json'
+                 , url: '/game/assign_task'
+                 , data: { parentTask: $scope.player_task, childTask: $scope.task_specific, characterId: $routeParams.id }
+                 , success: function(msg) {
+                       console.log(msg);
+                   }
+                });
+            }
+        } else {
+            $.ajax({
+               type: 'POST'    
+             , dataType: 'json'
+             , url: '/game/assign_task'
+             , data: { parentTask: $scope.player_task, characterId: $routeParams.id } , success: function(msg) {
+                   console.log(msg);
+               }
+            });
+        }
     }
 
 }

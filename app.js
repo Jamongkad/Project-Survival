@@ -44,6 +44,7 @@ app.get('/game/pull_players_by_job', game.pull_players_by_job);
 
 app.post('/game/create', game.create);
 app.post('/game/update_job', game.update_job);
+app.post('/game/assign_task', game.assign_task);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));

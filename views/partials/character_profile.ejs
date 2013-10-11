@@ -25,7 +25,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Assign Tasks</div>
             <div class="panel-body">            
-                <select class="form-control" ng-model="player_task" ng-init="player_task='Hunt'" ng-change="set_task()">
+                <select class="form-control" ng-model="player_task" ng-change="set_task()">
                     <option ng-repeat="job in jobs">{{job.jobName}}</option> 
                 </select>
             </div>
@@ -35,9 +35,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">{{player_task}}</div>
             <div class="panel-body">            
-                <select class="form-control" ng-model="task_specific" ng-change="set_task_specific()"> 
+                <select class="form-control" ng-model="task_specific"> 
                     <option value="" ng-hide="task_specific">----</option> 
-                    <option ng-repeat="t in task" value="{{t.value}}">{{t.task}}</option>
+                    <option ng-repeat="t in task" value="{{t.value}}" {{t.selected}}>{{t.task}}</option>
                 </select>
             </div>
         </div>
@@ -51,5 +51,5 @@
         </div>
     </div>
 
-    <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="">save profile</button>
+    <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="save_character()">save profile</button>
 </div>
