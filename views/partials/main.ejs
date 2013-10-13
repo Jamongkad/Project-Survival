@@ -1,18 +1,22 @@
-<div class="well col-md-9" ng-hide="characters">You must create characters in order to proceed!</div>
-<div class="well col-md-9" ng-show="characters">
-    <legend>Game Characters</legend>
-    <div class="table-responsive">
-        <table class="table table-condensed">
-            <thead>
-                <th>name</th>     
-                <th>gender</th>     
-            </thead>
+<div ng-hide="characters">You must create characters in order to proceed!</div>
+<div ng-show="characters">
+    <div class="panel panel-default">
+        <div class="panel-heading">Characters</div>
+        <div class="panel-body"> 
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <th>name</th>     
+                        <th>gender</th>     
+                    </thead>
 
-            <tr ng-repeat="char in characters">
-                <td>{{char.name}}</td>
-                <td>{{char.gender}}</td>
-            </tr>
-        </table>
-    </div>   
-    <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="proceed('/supply_phase')">Proceed to Supply Phase</button>
+                    <tr ng-repeat="char in characters">
+                        <td>{{char.name}}</td>
+                        <td>{{char.gender}}</td>
+                    </tr>
+                </table>
+            </div>   
+        </div>
+       <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="proceed('/supply_phase')">Proceed to Supply Phase</button>
+    </div>
 </div>

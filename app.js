@@ -37,13 +37,13 @@ app.get('/game/main', game.main);
 app.get('/game/display_characters', game.display_characters);
 app.get('/game/pull_jobs', game.pull_jobs);
 app.get('/game/supply_phase', game.supply_phase);
+app.get('/game/action_phase', game.action_phase);
 app.get('/game/character_profile', game.character_profile);
 app.get('/game/view/:id', game.view);
-
-app.get('/game/pull_players_by_job', game.pull_players_by_job);
+app.get('/game/pull_players_by_job/:choice', game.pull_players_by_job);
+app.get('/game/fetch_monsters', game.fetch_monsters);
 
 app.post('/game/create', game.create);
-app.post('/game/update_job', game.update_job);
 app.post('/game/assign_task', game.assign_task);
 
 http.createServer(app).listen(app.get('port'), function() {

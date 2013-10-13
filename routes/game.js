@@ -13,6 +13,10 @@ exports.supply_phase = function(req, res) {
     res.render("partials/supply_phase");
 }
 
+exports.action_phase = function(req, res) {
+    res.render("partials/action_phase");
+}
+
 exports.view = function(req, res) {
     var sql = "SELECT * FROM characters LEFT JOIN tasks ON tasks.characterId = characters.id WHERE ?";
     client.query(sql, {"characters.id": req.params.id}, function(err, result) {
@@ -37,34 +41,24 @@ exports.character_profile = function(req, res) {
 
 //move these guys into a model soon.
 exports.pull_players_by_job = function(req, res) {
-    var job_choice = req.query.choice;
-
-    if(job_choice == 'farm') {
-        sql_choice = 'farmer';
-    }
-
-    if(job_choice == 'mine') {
-        sql_choice = 'miner';
-    }
-
-    if(job_choice == 'hunt') {
-        sql_choice = 'hunter';
-    }
-
-    var sql = "SELECT * FROM characters INNER JOIN job ON characters.id = job.characterId WHERE 1=1 AND ?";
-    client.query(sql, {"job.jobName": sql_choice}, function(err, result) {
+    var sql = "SELECT * FROM characters INNER JOIN tasks ON characters.id = tasks.characterId WHERE 1=1 AND ?";
+    client.query(sql, {"tasks.parentTask": req.params.choice}, function(err, result) {
         res.json(result);
     });
+}
 
+exports.fetch_monsters = function(req, res) { 
+    var sql = "SELECT * FROM monster";
+    client.query(sql, function(err, result) {
+        res.json(result);
+    });
 }
 
 exports.create = function(req, res) {
     var char_data = {name: req.body.name, gender: req.body.gender};
     client.query("INSERT INTO characters SET ?", char_data, function(err, result) {
-        //client.query("INSERT INTO job SET ?", {"characterId": result.insertId, "jobName": job}, function(err, result) {});
         res.json(result);
     });
-
 }
 
 exports.assign_task = function(req, res) {
@@ -79,12 +73,4 @@ exports.display_characters = function(req, res) {
     client.query(sql, function(err, result) {
         res.json(result);
     })
-}
-
-exports.update_job = function(req, res) {
-    var post = req.body;
-    var sql = "UPDATE job SET jobName = " + client.escape(post.jobName) + " WHERE characterId = " + client.escape(post.characterId);
-    client.query(sql, function(err, result) {
-        res.json(result);
-    });
 }

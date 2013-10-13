@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div>
     <div class="panel panel-default">
         <div class="panel-heading">Supply Phase</div>
         <div class="panel-body">
@@ -6,10 +6,11 @@
                 <table class="table table-condensed">
                     <tr ng-repeat="char in characters">
                         <td>{{char.name}}</td>
-                        <td><a href="/#/view/{{char.id}}">view profile</a></td>
+                        <td><a href="/#/view/{{char.id}}">view profile / assign task</a></td>
                     </tr>
                 </table>
-            </div>
+            </div> 
         </div>
+        <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="proceed('/action_phase')">Action Phase</button>
     </div>
 </div>

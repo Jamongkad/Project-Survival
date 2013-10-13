@@ -24,6 +24,7 @@
 
         <script src="javascripts/game/main.js"></script>
 
+        <script src="javascripts/game/controllers/actionctrl.js"></script> 
         <script src="javascripts/game/controllers/gamectrl.js"></script> 
         <script src="javascripts/game/controllers/characterctrl.js"></script> 
         <script src="javascripts/game/controllers/signupctrl.js"></script> 
@@ -42,6 +43,7 @@
 
     </head>
     <body ng-app="Main"> 
+
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -49,26 +51,17 @@
                 </div>
 
                 <div id="navbar-main" class="navbar-collapse collapse">
-                   <ul class="nav navbar-nav">
-                        <li class="active"><a href="#game" mainnav>Game</a></li>
+                    <ul class="nav navbar-nav">
+                    <li class="active"><a href="#game" mainnav>Game</a></li>
+                    <li><a href="#/">Create Character</a></li> 
                     </ul>
+                    
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <div class="row">
-                <div class="col-md-3"> 
-                    <div class="well">
-                        <ul class="list-unstyled">
-                            <li><a href="#/">Create Character</a></li> 
-                            <li><a href="#/game">Game</a></li> 
-                        </ul>
-                    </div>
-                </div>
-                <ng-view></ng-view>
-            </div>
-
+            <ng-view></ng-view>
         </div>
 
     </body>

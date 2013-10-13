@@ -1,23 +1,24 @@
-<div class="col-md-8">
+<div>
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">{{character.name}}'s profile</div>
-            <div class="panel-body">
-                
-                <table class="table table-condensed">
-                    <tr>
-                        <td>hit points:</td> 
-                        <td>{{character.hp}}</td> 
-                    </tr> 
-                    <tr>
-                        <td>intelligence:</td> 
-                        <td>{{character.intel}}</td> 
-                    </tr> 
-                    <tr>
-                        <td>luck:</td> 
-                        <td>{{character.luck}}</td> 
-                    </tr> 
-                </table>
+            <div class="panel-body">                
+                <div class="table-responsive">
+                    <table class="table table-condensed">
+                        <tr>
+                            <td>hit points:</td> 
+                            <td>{{character.hp}}</td> 
+                        </tr> 
+                        <tr>
+                            <td>intelligence:</td> 
+                            <td>{{character.intel}}</td> 
+                        </tr> 
+                        <tr>
+                            <td>luck:</td> 
+                            <td>{{character.luck}}</td> 
+                        </tr> 
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -25,7 +26,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">Assign Tasks</div>
             <div class="panel-body">            
-                <select class="form-control" ng-model="player_task" ng-change="set_task()">
+                <select class="form-control" ng-model="player_task" ng-change="set_task()"> 
+                    <option value="" ng-hide="player_task">----</option>
                     <option ng-repeat="job in jobs">{{job.jobName}}</option> 
                 </select>
             </div>
@@ -35,9 +37,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">{{player_task}}</div>
             <div class="panel-body">            
-                <select class="form-control" ng-model="task_specific"> 
-                    <option value="" ng-hide="task_specific">----</option> 
-                    <option ng-repeat="t in task" value="{{t.value}}" {{t.selected}}>{{t.task}}</option>
+                <select class="form-control" ng-model="task_specific" ng-options="t.value as t.task for t in task"> 
+                    <option value="" ng-hide="task_specific">----</option>
                 </select>
             </div>
         </div>
@@ -50,6 +51,7 @@
             </div>
         </div>
     </div>
-
+    <br/>
     <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="save_character()">save profile</button>
+    <button class="btn btn-default btn-lg btn-block" type="button"  ng-click="back()">back to supply phase</button>
 </div>

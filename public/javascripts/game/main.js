@@ -18,6 +18,10 @@ app.config(function($routeProvider) {
            controller: "CharacterCtrl"
          , templateUrl: "/game/character_profile" 
         })
+        .when('/action_phase', {
+           controller: "ActionCtrl" 
+         , templateUrl: "/game/action_phase"
+        })
         /*
         .when('/phase/farm', { 
             controller: "GameCtrl"

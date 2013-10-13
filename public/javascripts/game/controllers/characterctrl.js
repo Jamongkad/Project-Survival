@@ -1,6 +1,6 @@
-function CharacterCtrl($scope, $routeParams) {
+function CharacterCtrl($scope, $routeParams, $location) {
 
-    $scope.task_desc = "A hunter risk his/her life for the continued survival for the populace.";
+    $scope.task_desc = "A hunter risk his/her life for the continued survival of the group.";
 
     $.ajax({
         type: 'GET'    
@@ -21,17 +21,20 @@ function CharacterCtrl($scope, $routeParams) {
             $scope.$apply($scope.job);
         }
     }); 
-
-    $scope.player_task = $scope.character.parentTask;
+    
+    if($scope.character.parentTask) {
+        $scope.player_task = $scope.character.parentTask;     
+    }
+   
+    $scope.task_specific = $scope.character.childTask;
 
     var player_task = function() { 
-        $scope.task_specific = "";
         $scope.task_desc = "";
         if($scope.player_task == "Research") { 
             $scope.task = [
-                {"task": "weapon/armor advancement", "value": "weapon_up", "selected": ($scope.character.childTask == "weapon_up") ? "selected" : null}
-              , {"task": "agricultural advancement", "value": "agri_up", "selected": ($scope.character.childTask == "agri_up") ? "selected" : null}
-              , {"task": "village advancement", "value": "vill_up", "selected": ($scope.character.childTask == "vill_up") ? "selected" : null}
+                {"task": "weapon/armor advancement", "value": "weapon_up"}
+              , {"task": "agricultural advancement", "value": "agri_up"}
+              , {"task": "village advancement", "value": "vill_up"}
             ];
         } else if($scope.player_task == "Craft") { 
             $scope.task = [
@@ -47,10 +50,10 @@ function CharacterCtrl($scope, $routeParams) {
             ];
         } else if($scope.player_task == "Hunt") {
             $scope.task = [];
-            $scope.task_desc = "A hunter risk his/her life for the continued survival for the populace.";
+            $scope.task_desc = "A hunter risk his/her life for the continued survival of the group.";
         } else if($scope.player_task == "Guard") {
             $scope.task = [];
-            $scope.task_desc = "A guard is always vigilant and ready to take up arms for the safety of the populace.";
+            $scope.task_desc = "A guard is always vigilant and ready to take up arms for the safety of the group.";
         } else {
             $scope.task = [];     
         } 
@@ -74,6 +77,7 @@ function CharacterCtrl($scope, $routeParams) {
                  , data: { parentTask: $scope.player_task, childTask: $scope.task_specific, characterId: $routeParams.id }
                  , success: function(msg) {
                        console.log(msg);
+                       alert("Saved!");
                    }
                 });
             }
@@ -84,9 +88,14 @@ function CharacterCtrl($scope, $routeParams) {
              , url: '/game/assign_task'
              , data: { parentTask: $scope.player_task, characterId: $routeParams.id } , success: function(msg) {
                    console.log(msg);
+                   alert("Saved!");
                }
             });
         }
+    }
+
+    $scope.back = function() {
+        $location.path("/supply_phase");
     }
 
 }

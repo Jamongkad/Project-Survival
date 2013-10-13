@@ -1,0 +1,66 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Action Phase</div>
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-target="#hunt" data-toggle="tab" ng-click="filter('hunt')">Hunt</a></li> 
+                <li><a data-target="#research" data-toggle="tab" ng-click="filter('research')">Research</a></li> 
+                <li><a data-target="#explore" data-toggle="tab" ng-click="filter('explore')">Explore</a></li> 
+                <li><a data-target="#craft" data-toggle="tab" ng-click="filter('craft')">Craft</a></li> 
+                <li><a data-target="#guard" data-toggle="tab" ng-click="filter('guard')">Guard</a></li> 
+            </ul>
+            <div class="tab-content">
+                <div id="hunt" class="tab-pane active">
+                    <br/>
+                    <p>Generating game board: {{board_generation}}</p>
+                    <div class="panel panel-default"> 
+                        <div class="panel-heading">{{monster.name}}</div>
+                        <div class="panel-body">
+                            <p>HP: {{monster.hp}}</p> 
+                        </div>
+                    </div>
+                     
+                    <h3>Hunters</h3>
+                    <div ng-repeat="char in character">
+                        {{char.name}} {{char.hp}}hp <a>+</a><a>-</a>
+                    </div>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-default" ng-click="monster_action($event)">Generate monster action</button>
+                    <br/>
+                    <br/>
+                    <div id="hunt-notification"></div>
+                </div>
+
+                <div id="research" class="tab-pane">
+                    <h3>Researchers</h3>
+                    <div ng-repeat="char in character">
+                        {{char.name}} 
+                    </div>
+                </div>
+
+                <div id="explore" class="tab-pane">
+                    <h3>Explorers</h3>
+                    <div ng-repeat="char in character">
+                        {{char.name}} 
+                    </div>
+                </div>
+
+                <div id="craft" class="tab-pane">
+                    <h3>Crafters</h3>
+                    <div ng-repeat="char in character">
+                        {{char.name}} 
+                    </div>
+                </div>
+
+                <div id="guard" class="tab-pane">
+                    <h3>Guards</h3>
+                    <div ng-repeat="char in character">
+                        {{char.name}} 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="proceed('/camp_phase')">Camp Phase</button>-->
+    </div>
+</div>
