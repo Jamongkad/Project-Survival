@@ -62,4 +62,21 @@ function ActionCtrl($scope) {
         });
 
     }
+
+    $scope.increment = function($event) {
+       var me = $($event.currentTarget);
+       var hp = parseInt(me.prev().text(), 10) + 1;
+       me.prev().text(hp);
+       $event.preventDefault();
+    }
+
+    $scope.decrement = function($event) { 
+       var me = $($event.currentTarget);
+       var hp = parseInt(me.siblings(".hp").text(), 10) - 1;
+       if(hp >= 0) {
+           me.siblings('.hp').text(hp);    
+       }
+       
+       $event.preventDefault();
+    }
 }

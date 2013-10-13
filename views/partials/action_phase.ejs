@@ -12,18 +12,26 @@
             <div class="tab-content">
                 <div id="hunt" class="tab-pane active">
                     <br/>
-                    <p>Generating game board: {{board_generation}}</p>
+                    <p>Game board: <b>{{board_generation}}</b></p>
                     <div class="panel panel-default"> 
                         <div class="panel-heading">{{monster.name}}</div>
                         <div class="panel-body">
-                            <p>HP: {{monster.hp}}</p> 
+                            <div>HP: {{monster.hp}}</div>
+                            <div>MOVE: {{monster.move}}</div>
                         </div>
                     </div>
-                     
-                    <h3>Hunters</h3>
-                    <div ng-repeat="char in character">
-                        {{char.name}} {{char.hp}}hp <a>+</a><a>-</a>
+                    
+
+                    <div class="panel panel-default"> 
+                        <div class="panel-heading">Hunters</div>
+                        <div class="panel-body">
+                            <div ng-repeat="char in character">
+                                {{char.name}} <span class="hp">{{char.hp}}</span> hp 
+                                <a href="/" ng-click="increment($event)">+</a> <a href="/" ng-click="decrement($event)">-</a>
+                            </div> 
+                        </div>
                     </div>
+
                     <br/>
                     <br/>
                     <button class="btn btn-default" ng-click="monster_action($event)">Generate monster action</button>
