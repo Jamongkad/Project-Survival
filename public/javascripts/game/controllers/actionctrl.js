@@ -65,18 +65,21 @@ function ActionCtrl($scope) {
 
     $scope.increment = function($event) {
        var me = $($event.currentTarget);
-       var hp = parseInt(me.prev().text(), 10) + 1;
-       me.prev().text(hp);
+       var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
+       var hp = parseInt(int_hp, 10) + 1;
+       me.parents('td').siblings('.hp').children('.char-hp').text(hp);
        $event.preventDefault();
     }
 
     $scope.decrement = function($event) { 
        var me = $($event.currentTarget);
-       var hp = parseInt(me.siblings(".hp").text(), 10) - 1;
+       var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
+       var hp = parseInt(int_hp, 10) - 1;
+
        if(hp >= 0) {
-           me.siblings('.hp').text(hp);    
+           me.parents('td').siblings('.hp').children('.char-hp').text(hp);
        }
-       
+
        $event.preventDefault();
     }
 }
