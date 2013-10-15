@@ -62,23 +62,46 @@ function ActionCtrl($scope) {
         });
 
     }
+    
+    //place these guys in a directive mothufucka
+    $scope.increment = function($event, type) {
+        var me = $($event.currentTarget);
 
-    $scope.increment = function($event) {
-       var me = $($event.currentTarget);
-       var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
-       var hp = parseInt(int_hp, 10) + 1;
-       me.parents('td').siblings('.hp').children('.char-hp').text(hp);
-       $event.preventDefault();
+        if(type == 'player') { 
+            var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
+            var hp = parseInt(int_hp, 10) + 1;
+            me.parents('td').siblings('.hp').children('.char-hp').text(hp);
+        }
+
+        if(type == 'monster') {   
+            var int_hp = me.siblings('.monster-hp').text(); 
+            var hp = parseInt(int_hp, 10) + 1; 
+            me.siblings('.monster-hp').text(hp);
+        }
+
+        $event.preventDefault();
     }
 
-    $scope.decrement = function($event) { 
+    $scope.decrement = function($event, type) { 
        var me = $($event.currentTarget);
-       var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
-       var hp = parseInt(int_hp, 10) - 1;
+       if(type == 'player') {  
+           var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
+           var hp = parseInt(int_hp, 10) - 1;
 
-       if(hp >= 0) {
-           me.parents('td').siblings('.hp').children('.char-hp').text(hp);
+           if(hp >= 0) {
+               me.parents('td').siblings('.hp').children('.char-hp').text(hp);
+           }
        }
+
+        if(type == 'monster') {   
+            var int_hp = me.siblings('.monster-hp').text(); 
+            var hp = parseInt(int_hp, 10) - 1; 
+
+            if(hp >= 0) {
+                me.siblings('.monster-hp').text(hp); 
+            }
+           
+        }
 
        $event.preventDefault();
     }

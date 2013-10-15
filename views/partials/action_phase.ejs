@@ -20,7 +20,10 @@
                                 <table class="table table-condensed">
                                     <tr>
                                         <td>HP:</td> 
-                                        <td>{{monster.hp}}</td> 
+                                        <td><span class="monster-hp">{{monster.hp}}</span> <span style="margin-left:10px"></span>
+                                            <button class="btn-default btn btn-xs" ng-click="increment($event, 'monster')">life [+]</button>
+                                            <button class="btn-default btn btn-xs" ng-click="decrement($event, 'monster')">life [-]</button>
+                                        </td>
                                     </tr> 
                                     <tr>
                                         <td>MOVE:</td> 
@@ -29,6 +32,7 @@
                                 </table>
                             </div>
                         </div>
+                        <button class="btn btn-default btn-lg btn-block" ng-click="monster_action($event)">Monster Action</button>
                     </div>
                 
                     <div class="panel panel-default"> 
@@ -40,20 +44,14 @@
                                     <tr ng-repeat="char in character">
                                         <td>{{char.name}}</td>
                                         <td class="hp"><span class="char-hp">{{char.hp}}</span> hp</td>
-                                        <td><button class="btn-default btn btn-xs" ng-click="increment($event)">life [+]</button></td>
-                                        <td><button class="btn-default btn btn-xs" ng-click="decrement($event)">life [-]</button></td>
+                                        <td><button class="btn-default btn btn-xs" ng-click="increment($event, 'player')">life [+]</button></td>
+                                        <td><button class="btn-default btn btn-xs" ng-click="decrement($event, 'player')">life [-]</button></td>
                                     </tr>
                                 </table>
                             </div>   
 
                         </div>
-                    </div>
-                    <br/>
-                    <br/>
-                    <button class="btn btn-default" ng-click="monster_action($event)">Generate monster action</button>
-                    <br/>
-                    <br/>
-                    <div id="hunt-notification"></div>
+                    </div>                    
                 </div>
 
                 <div id="research" class="tab-pane">
