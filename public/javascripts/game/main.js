@@ -1,4 +1,4 @@
-var app = angular.module("Main", ['Gameview', 'TemplateService', 'CompileHtml', 'CurrencyFlow', 'Visitor', 'Dropzone']);
+var app = angular.module("Main", ['TemplateService', 'CompileHtml', 'CurrencyFlow', 'Monster']);
 
 app.config(function($routeProvider) {
     $routeProvider   

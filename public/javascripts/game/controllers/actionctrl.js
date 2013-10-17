@@ -36,17 +36,22 @@ function ActionCtrl($scope) {
  
     $scope.monster_action = function($event) { 
 
+        var chosen_players;
+
         $.ajax({
             type: 'GET'    
           , dataType: 'json' 
           , url: '/game/pull_players_by_job/hunt'
+          , async: false
           , success: function(msg) {
-                var chosen_players = shuffleArray(msg)[0];
-                console.log(chosen_players);
-                $("#hunt-notification").html("<p>Monster is heading over to " + chosen_players.name + "</p>");
+                chosen_players = shuffleArray(msg)[0];               
             }
         });
 
+        bootbox.dialog({
+           message: chosen_players.name
+         , title: "Monster Action"
+        });
     }
 
     $scope.filter = function(choice) {
