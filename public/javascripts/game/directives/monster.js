@@ -1,6 +1,6 @@
 angular.module('Monster', [])
 .directive('monsterAction', function() {
-
+    /*
     var chosen_players;
 
     $.ajax({
@@ -25,6 +25,7 @@ angular.module('Monster', [])
             })
         }
     }    
+    */
 })
 
 var shuffleArray = function(array) {

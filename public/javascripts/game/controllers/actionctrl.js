@@ -35,9 +35,12 @@ function ActionCtrl($scope) {
     });
  
     $scope.monster_action = function($event) { 
+        console.log($scope.board_generation);
+        console.log($scope.monster);
+        console.log($scope.character);
 
+        /*
         var chosen_players;
-
         $.ajax({
             type: 'GET'    
           , dataType: 'json' 
@@ -51,7 +54,9 @@ function ActionCtrl($scope) {
         bootbox.dialog({
            message: chosen_players.name
          , title: "Monster Action"
+         , 
         });
+        */
     }
 
     $scope.filter = function(choice) {
@@ -82,6 +87,7 @@ function ActionCtrl($scope) {
             var int_hp = me.siblings('.monster-hp').text(); 
             var hp = parseInt(int_hp, 10) + 1; 
             me.siblings('.monster-hp').text(hp);
+            $scope.monster.hp = hp;
         }
 
         $event.preventDefault();
@@ -104,6 +110,7 @@ function ActionCtrl($scope) {
 
             if(hp >= 0) {
                 me.siblings('.monster-hp').text(hp); 
+                $scope.monster.hp = hp;
             }
            
         }
