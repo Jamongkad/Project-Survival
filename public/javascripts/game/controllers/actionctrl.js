@@ -35,10 +35,15 @@ function ActionCtrl($scope) {
     });
  
     $scope.monster_action = function($event) { 
-        console.log($scope.board_generation);
-        console.log($scope.monster);
-        console.log($scope.character);
-
+        $.ajax({ 
+            type: 'POST'    
+          , dataType: 'json' 
+          , url: '/game/initiate_hunt'
+          , data: { board: $scope.board_generation, monster: $scope.monster, characters: $scope.character }
+          , success: function(msg) {
+                console.log(msg);
+            }
+        })
         /*
         var chosen_players;
         $.ajax({
@@ -77,12 +82,6 @@ function ActionCtrl($scope) {
     $scope.increment = function($event, type) {
         var me = $($event.currentTarget);
 
-        if(type == 'player') { 
-            var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
-            var hp = parseInt(int_hp, 10) + 1;
-            me.parents('td').siblings('.hp').children('.char-hp').text(hp);
-        }
-
         if(type == 'monster') {   
             var int_hp = me.siblings('.monster-hp').text(); 
             var hp = parseInt(int_hp, 10) + 1; 
@@ -95,14 +94,6 @@ function ActionCtrl($scope) {
 
     $scope.decrement = function($event, type) { 
        var me = $($event.currentTarget);
-       if(type == 'player') {  
-           var int_hp = me.parents('td').siblings('.hp').children('.char-hp').text();
-           var hp = parseInt(int_hp, 10) - 1;
-
-           if(hp >= 0) {
-               me.parents('td').siblings('.hp').children('.char-hp').text(hp);
-           }
-       }
 
         if(type == 'monster') {   
             var int_hp = me.siblings('.monster-hp').text(); 

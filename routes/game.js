@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var client = mysql.createConnection({host: 'localhost', user: 'root', password: 'brx4*svv', database: 'survivor'});
+var hunt = require('../models/hunt');
 
 exports.main = function(req, res) {
     res.render("partials/main");
@@ -74,3 +75,19 @@ exports.display_characters = function(req, res) {
         res.json(result);
     })
 }
+
+exports.initiate_hunt = function(req, res) {
+    var h = new hunt.hunt;
+    h.initialize(req.body);
+    res.json(h.fight());
+}
+
+var shuffleArray = function(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+} 

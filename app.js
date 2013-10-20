@@ -44,6 +44,7 @@ app.get('/game/pull_players_by_job/:choice', game.pull_players_by_job);
 app.get('/game/fetch_monsters', game.fetch_monsters);
 
 app.post('/game/create', game.create);
+app.post('/game/initiate_hunt', game.initiate_hunt);
 app.post('/game/assign_task', game.assign_task);
 
 http.createServer(app).listen(app.get('port'), function() {

@@ -32,26 +32,26 @@
                                 </table>
                             </div>
                         </div>
-                        <button class="btn btn-default btn-lg btn-block" ng-click="monster_action()">Monster Action</button>
                     </div>
                 
                     <div class="panel panel-default"> 
                         <div class="panel-heading">Hunters</div>
                         <div class="panel-body">
-
                             <div class="table-responsive">
                                 <table class="table table-condensed">
-                                    <tr ng-repeat="char in character">
-                                        <td>{{char.name}}</td>
+                                    <tr ng-repeat="char in character"> 
+                                        <td class="name">{{char.name}} </td>
+                                        <input type="hidden" ng-model="character[char]"/>
                                         <td class="hp"><span class="char-hp">{{char.hp}}</span> hp</td>
-                                        <td><button class="btn-default btn btn-xs" ng-click="increment($event, 'player')">life [+]</button></td>
-                                        <td><button class="btn-default btn btn-xs" ng-click="decrement($event, 'player')">life [-]</button></td>
+                                        <td><player-life-up player="char"></player-life-up></td>
+                                        <td><player-life-down player="char"></player-life-down></td>
                                     </tr>
                                 </table>
                             </div>   
-
                         </div>
                     </div>                    
+
+                    <button class="btn btn-default btn-lg btn-block" ng-click="monster_action()">Initiate Hunt</button>
                 </div>
 
                 <div id="research" class="tab-pane">
