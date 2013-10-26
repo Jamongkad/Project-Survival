@@ -56,7 +56,6 @@ function ActionCtrl($scope) {
           , url: '/game/initiate_hunt'
           , data: { board: $scope.board_generation, monster: $scope.monster, characters: $scope.character, reached: reach }
           , success: function(msg) {
-                console.log(msg);               
             }
         })
         
