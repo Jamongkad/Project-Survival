@@ -1,3 +1,6 @@
+var redis = require("redis");
+    client = redis.createClient();
+
 var Hunt = function() {
     
     this.initialize = function(data) {
@@ -5,14 +8,35 @@ var Hunt = function() {
     }
 
     this.fight = function() {
-        
-        console.log(this.data);
-
+        this.monster_ai();
+        /*
         if(this.data.reached == 1) {
             return this.data.monster.name + " has reached!";
         } else { 
             return this.data.monster.name + " is advancing!";
         }
+        */
+    }
+
+    this.monster_ai = function() {
+        var data = this.data;
+        var victim = this.shuffleArray(this.data.characters)[0];
+        var monster_key = "monster:" + this.data.monster.id + ":victim";
+        var hunt = this;
+        
+        client.hgetall(monster_key, function(err, obj) {
+            
+            if(!obj) {
+                client.hset(monster_key, "name", victim.name);         
+                client.hset(monster_key, "hp", victim.hp);         
+                client.hset(monster_key, "gender", victim.gender);         
+                client.hset(monster_key, "characterId", victim.characterId);         
+            } else {
+                console.log(obj);
+            }  
+
+        }); 
+
     }
 
     this.shuffleArray = function(array) {

@@ -1,4 +1,4 @@
-function ActionCtrl($scope) {
+function ActionCtrl($scope, $compile) {
       
     var board = ["4x4", "6x6", "7x7", "8x8"];
      
@@ -14,7 +14,7 @@ function ActionCtrl($scope) {
 
     var board_tile = shuffleArray(board)[0];
     $scope.board_generation = board_tile;
-    var tile = board_tile.match(/[0-9]+/).pop();
+    $scope.tile = board_tile.match(/[0-9]+/).pop();
 
     $.ajax({
         type: 'GET'    
@@ -39,51 +39,21 @@ function ActionCtrl($scope) {
     $scope.monster_action = function($event) { 
  
         var monster_move = $scope.monster.move;
-        var reach = 0;
-        tile -= monster_move;
+        $scope.reach = 0;
+        $scope.tile -= monster_move;
 
-        if(monster_move < tile) { 
-            reach = 0;
+        if(monster_move < $scope.tile) { 
+            $scope.reach = 0;
         }
 
-        if(tile <= 0) {  
-            reach = 1;
+        if($scope.tile <= 0) {  
+            $scope.reach = 1;
         }
-
-        $.ajax({ 
-            type: 'POST'    
-          , dataType: 'json' 
-          , url: '/game/initiate_hunt'
-          , data: { board: $scope.board_generation, monster: $scope.monster, characters: $scope.character, reached: reach }
-          , success: function(msg) {
-            }
-        })
-        
-        /*
+ 
         bootbox.dialog({
-           message: msg
-         , title: "Monster Action" 
-        });
-        */
-
-        /*
-        var chosen_players;
-        $.ajax({
-            type: 'GET'    
-          , dataType: 'json' 
-          , url: '/game/pull_players_by_job/hunt'
-          , async: false
-          , success: function(msg) {
-                chosen_players = shuffleArray(msg)[0];               
-            }
-        });
-
-        bootbox.dialog({
-           message: chosen_players.name
+           message: $compile("<monster-action></monster-action>")($scope)
          , title: "Monster Action"
-         , 
         });
-        */
     }
 
     $scope.filter = function(choice) {

@@ -1,4 +1,4 @@
-var app = angular.module("Main", ['TemplateService', 'CompileHtml', 'CurrencyFlow', 'Monster', 'Player']);
+var app = angular.module("Main", ['TemplateService', 'CompileHtml', 'HuntService', 'Monster', 'Player', 'ui.bootstrap']);
 
 app.config(function($routeProvider) {
     $routeProvider   
@@ -22,18 +22,4 @@ app.config(function($routeProvider) {
            controller: "ActionCtrl" 
          , templateUrl: "/game/action_phase"
         })
-        /*
-        .when('/phase/farm', { 
-            controller: "GameCtrl"
-          , templateUrl: "/game/phase/farm_phase"
-        })
-        .when('/phase/mine', { 
-            controller: "GameCtrl"
-          , templateUrl: "/game/phase/mine_phase"
-        })
-        .when('/phase/hunt', { 
-            controller: "GameCtrl"
-          , templateUrl: "/game/phase/hunt_phase"
-        })
-        */
 });

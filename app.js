@@ -42,6 +42,7 @@ app.get('/game/character_profile', game.character_profile);
 app.get('/game/view/:id', game.view);
 app.get('/game/pull_players_by_job/:choice', game.pull_players_by_job);
 app.get('/game/fetch_monsters', game.fetch_monsters);
+app.get('/game/hunt_ui', game.hunt_ui);
 
 app.post('/game/create', game.create);
 app.post('/game/initiate_hunt', game.initiate_hunt);

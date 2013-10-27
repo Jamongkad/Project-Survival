@@ -81,3 +81,7 @@ exports.initiate_hunt = function(req, res) {
     hnt.initialize(req.body);
     res.json(hnt.fight());
 }
+
+exports.hunt_ui = function(req, res) { 
+    res.render("partials/hunt_ui");
+}
